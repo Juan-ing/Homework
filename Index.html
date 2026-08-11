@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratorio de Arrays en JS</title>
+  <link rel="stylesheet" href="Style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Laboratorio de Funciones de Arrays en JavaScript</h1>
+
+  <!-- Métodos de iteración -->
+  <div class="funcion">
+    <h2>map()</h2>
+    <p>Transforma cada elemento y devuelve un nuevo arreglo.</p>
+    <input id="mapInput" placeholder="[1,2,3]">
+    <input id="mapExpr" placeholder="expresión (x*2)">
+    <button onclick="ejecutar('map')">Procesar</button>
+    <div class="output" id="mapOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>filter()</h2>
+    <p>Devuelve los elementos que cumplen una condición.</p>
+    <input id="filterInput" placeholder="[1,2,3,4]">
+    <input id="filterExpr" placeholder="condición (x%2===0) devuelve pares">
+    <button onclick="ejecutar('filter')">Procesar</button>
+    <div class="output" id="filterOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>reduce()</h2>
+    <p>Reduce el arreglo a un solo valor acumulando.</p>
+    <input id="reduceInput" placeholder="[1,2,3,4]">
+    <input id="reduceExpr" placeholder="acumulador + elemento">
+    <input id="reduceInit" placeholder="Valor inicial">
+    <button onclick="ejecutar('reduce')">Procesar</button>
+    <div class="output" id="reduceOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>forEach()</h2>
+    <p>Ejecuta una función en cada elemento (no devuelve nada).</p>
+    <input id="forEachInput" placeholder="[1,2,3]">
+    <input id="forEachExpr" placeholder="console.log(x)">
+    <button onclick="ejecutar('forEach')">Procesar</button>
+    <div class="output" id="forEachOutput"></div>
+  </div>
+
+  <!-- Métodos de búsqueda -->
+  <div class="funcion">
+    <h2>find()</h2>
+    <p>Devuelve el primer elemento que cumple la condición.</p>
+    <input id="findInput" placeholder="[1,2,3,4]">
+    <input id="findExpr" placeholder="condición (x>2)">
+    <button onclick="ejecutar('find')">Procesar</button>
+    <div class="output" id="findOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>findIndex()</h2>
+    <p>Devuelve el índice del primer elemento que cumple la condición.</p>
+    <input id="findIndexInput" placeholder="[1,2,3,4]">
+    <input id="findIndexExpr" placeholder="condición (x>2)">
+    <button onclick="ejecutar('findIndex')">Procesar</button>
+    <div class="output" id="findIndexOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>some()</h2>
+    <p>Devuelve true si algún elemento cumple la condición.</p>
+    <input id="someInput" placeholder="[1,2,3]">
+    <input id="someExpr" placeholder="condición (x>2)">
+    <button onclick="ejecutar('some')">Procesar</button>
+    <div class="output" id="someOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>every()</h2>
+    <p>Devuelve true si todos los elementos cumplen la condición.</p>
+    <input id="everyInput" placeholder="[1,2,3]">
+    <input id="everyExpr" placeholder="condición (x>0)">
+    <button onclick="ejecutar('every')">Procesar</button>
+    <div class="output" id="everyOutput"></div>
+  </div>
+
+  <!-- Métodos de manipulación -->
+  <div class="funcion">
+    <h2>push()</h2>
+    <p>Añade elementos al final.</p>
+    <input id="pushInput" placeholder="[1,2,3]">
+    <input id="pushValue" placeholder="Elemento a agregar">
+    <button onclick="ejecutar('push')">Procesar</button>
+    <div class="output" id="pushOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>pop()</h2>
+    <p>Elimina el último elemento.</p>
+    <input id="popInput" placeholder="[1,2,3]">
+    <button onclick="ejecutar('pop')">Procesar</button>
+    <div class="output" id="popOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>shift()</h2>
+    <p>Elimina el primer elemento.</p>
+    <input id="shiftInput" placeholder="[1,2,3]">
+    <button onclick="ejecutar('shift')">Procesar</button>
+    <div class="output" id="shiftOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>unshift()</h2>
+    <p>Añade elementos al inicio.</p>
+    <input id="unshiftInput" placeholder="[1,2,3]">
+    <input id="unshiftValue" placeholder="Elemento a agregar">
+    <button onclick="ejecutar('unshift')">Procesar</button>
+    <div class="output" id="unshiftOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>concat()</h2>
+    <p>Concatena dos arreglos.</p>
+    <input id="concatInput1" placeholder="[1,2]">
+    <input id="concatInput2" placeholder="[3,4]">
+    <button onclick="ejecutar('concat')">Procesar</button>
+    <div class="output" id="concatOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>slice()</h2>
+    <p>Devuelve una copia parcial del arreglo.</p>
+    <input id="sliceInput" placeholder="[1,2,3,4,5]">
+    <input id="sliceStart" placeholder="Posicion de inicio">
+    <input id="sliceEnd" placeholder="Posicion de fin">
+    <button onclick="ejecutar('slice')">Procesar</button>
+    <div class="output" id="sliceOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>splice()</h2>
+    <p>Agrega o elimina elementos en una posición.</p>
+    <input id="spliceInput" placeholder="[1,2,3,4]">
+    <input id="spliceStart" placeholder="Posicion">
+    <input id="spliceDelete" placeholder="Cantidad a eliminar">
+    <input id="spliceAdd" placeholder="Elementos a agregar (separados por comas)">
+    <button onclick="ejecutar('splice')">Procesar</button>
+    <div class="output" id="spliceOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>sort()</h2>
+    <p>Ordena los elementos.</p>
+    <input id="sortInput" placeholder="[3,1,2]">
+    <button onclick="ejecutar('sort')">Procesar</button>
+    <div class="output" id="sortOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>reverse()</h2>
+    <p>Invierte el orden de los elementos.</p>
+    <input id="reverseInput" placeholder="[1,2,3]">
+    <button onclick="ejecutar('reverse')">Procesar</button>
+    <div class="output" id="reverseOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>join()</h2>
+    <p>Une los elementos en un string.</p>
+    <input id="joinInput" placeholder="[1,2,3]">
+    <input id="joinSep" placeholder=" - ">
+    <button onclick="ejecutar('join')">Procesar</button>
+    <div class="output" id="joinOutput"></div>
+  </div>
+
+  <div class="funcion">
+    <h2>includes()</h2>
+    <p>Verifica si un valor está en el arreglo.</p>
+    <input id="includesInput" placeholder="[1,2,3]">
+    <input id="includesValue" placeholder="Elemento a buscar">
+    <button
