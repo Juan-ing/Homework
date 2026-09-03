@@ -15,10 +15,13 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the initial contacts', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, 02');
+    const contacts = compiled.querySelectorAll('#listaContactos li');
+
+    expect(contacts).toHaveLength(3);
+    expect(contacts[0].textContent).toContain('Juan - 123456789');
   });
 });
