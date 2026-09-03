@@ -1,0 +1,24 @@
+<header>Contactos</header>
+
+<section>
+  <aside>
+    <h1>Agregar Contacto</h1>
+    <form (ngSubmit)="agregarContacto()">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" name="nombre" [(ngModel)]="nombre" required>
+      <label for="numero">Número:</label>
+      <input id="numero" name="numero" [(ngModel)]="numero" required>
+      <button id="BtnAgregar" type="submit">Agregar contacto</button>
+    </form>
+    <button id="BtnBorrar" type="button" (click)="borrarUltimoContacto()">Borrar contacto</button>
+  </aside>
+
+  <main>
+    <h2>Lista de Contactos</h2>
+    <ul id="listaContactos">
+      @for (contacto of contactos; track contacto.id) {
+        <li>{{ contacto.nombre }} - {{ contacto.numero }}</li>
+      }
+    </ul>
+  </main>
+</section>
