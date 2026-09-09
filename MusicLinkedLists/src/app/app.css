@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: #1d4ed8;
+}
+
+.nav-link:visited {
+  color: #4f46e5;
+}
