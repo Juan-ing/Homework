@@ -1,0 +1,16 @@
+<section class="panel">
+  <h2>Comité administrativo</h2>
+
+  @if (members.length === 0) {
+    <p>No hay miembros registrados.</p>
+  } @else {
+    @for (member of members; track member.name) {
+      <div class="item-row committee-item">
+        <div>
+          <strong>{{ member.name }}</strong>
+          <p>{{ member.role }}</p>
+        </div>
+      </div>
+    }
+  }
+</section>

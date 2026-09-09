@@ -1,0 +1,17 @@
+<section class="panel">
+  <h2>Pacientes en espera</h2>
+
+  @if (patients.length === 0) {
+    <p>No hay pacientes pendientes.</p>
+  } @else {
+    @for (patient of patients; track patient.id) {
+      <div class="item-row">
+        <div>
+          <strong>{{ patient.name }}</strong>
+          <p>{{ patient.complaint }}</p>
+        </div>
+        <button type="button" (click)="attendPatient(patient)">Atender</button>
+      </div>
+    }
+  }
+</section>

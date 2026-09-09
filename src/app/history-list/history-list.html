@@ -1,0 +1,16 @@
+<section class="panel">
+  <h2>Historial de atención</h2>
+
+  @if (patients.length === 0) {
+    <p>No hubo atenciones recientes.</p>
+  } @else {
+    @for (patient of patients; track patient.id) {
+      <div class="item-row history-item">
+        <div>
+          <strong>{{ patient.name }}</strong>
+          <p>{{ patient.complaint }}</p>
+        </div>
+      </div>
+    }
+  }
+</section>
