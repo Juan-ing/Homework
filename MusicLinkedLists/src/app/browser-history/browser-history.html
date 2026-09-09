@@ -1,0 +1,43 @@
+<div class="container">
+
+  <h1>Historial del navegador</h1>
+
+  <h2>Lista doblemente enlazada</h2>
+
+  <div class="current-page">
+
+    <h3>Página actual:</h3>
+
+    <p>
+      {{ getCurrentPage() }}
+    </p>
+
+  </div>
+
+  <div class="buttons">
+
+    <button
+      (click)="goBack()"
+      [disabled]="!canGoBack">
+      ← Atrás
+    </button>
+
+    <button
+      (click)="goForward()"
+      [disabled]="!canGoForward">
+      Adelante →
+    </button>
+
+  </div>
+
+  <h2>Historial</h2>
+
+  <ol>
+    @for (page of pages; track $index) {
+      <li>
+        {{ page }}
+      </li>
+    }
+  </ol>
+
+</div>

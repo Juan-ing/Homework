@@ -1,0 +1,42 @@
+<div class="container">
+
+  <h1>Reproductor de canciones</h1>
+
+  <h2>Lista enlazada simple</h2>
+
+  <div class="current-song">
+    <h3>Reproduciendo:</h3>
+
+    <p>
+      {{ getCurrentSong() }}
+    </p>
+  </div>
+
+  <div class="buttons">
+
+    <button
+      (click)="previousSong()"
+      [disabled]="currentIndex === 0">
+      Anterior
+    </button>
+
+    <button
+      (click)="nextSong()"
+      [disabled]="currentIndex === songs.getSize() - 1">
+      Siguiente
+    </button>
+
+  </div>
+
+  <h2>Canciones</h2>
+
+  <ol>
+    @for (song of songList; track $index) {
+      <li
+        [class.selected]="$index === currentIndex">
+        {{ song }}
+      </li>
+    }
+  </ol>
+
+</div>
