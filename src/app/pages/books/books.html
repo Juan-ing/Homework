@@ -1,0 +1,55 @@
+<section class="books-container">
+  <h1>Stack de libros</h1>
+
+  <form class="book-form" (ngSubmit)="addBook()">
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" type="text" [(ngModel)]="newBook.name" name="name" />
+    </div>
+
+    <div class="field">
+      <label for="isbn">ISBN</label>
+      <input id="isbn" type="text" [(ngModel)]="newBook.isbn" name="isbn" />
+    </div>
+
+    <div class="field">
+      <label for="author">Author</label>
+      <input id="author" type="text" [(ngModel)]="newBook.author" name="author" />
+    </div>
+
+    <div class="field">
+      <label for="editorial">Editorial</label>
+      <input id="editorial" type="text" [(ngModel)]="newBook.editorial" name="editorial" />
+    </div>
+
+    <button type="submit" class="primary-button">Agregar libro</button>
+  </form>
+
+  <div class="actions">
+    <button type="button" class="secondary-button" (click)="popBook()" [disabled]="isStackEmpty">
+      Pop
+    </button>
+
+    <button type="button" class="secondary-button" (click)="peekBook()" [disabled]="isStackEmpty">
+      Peek
+    </button>
+  </div>
+
+  <p class="status">{{ statusMessage }}</p>
+  <p class="stack-size">Tamaño actual de la pila: {{ stack.size() }}</p>
+
+  <div class="stack-box">
+    <div class="stack-header">TOP</div>
+
+    <div *ngIf="isStackEmpty" class="empty-stack">
+      La pila está vacía.
+    </div>
+
+    <div *ngFor="let book of stackItems; let i = index" class="book-item" [class.top-item]="i === 0">
+      <div class="book-title">{{ book.name }}</div>
+      <div class="book-detail">Author: {{ book.author }}</div>
+      <div class="book-detail">ISBN: {{ book.isbn }}</div>
+      <div class="book-detail">Editorial: {{ book.editorial }}</div>
+    </div>
+  </div>
+</section>

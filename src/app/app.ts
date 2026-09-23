@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { BooksComponent } from './pages/books/books';
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
-  templateUrl: './app.html',
+  standalone: true,
+  imports: [BooksComponent],
+  template: '<app-books></app-books>',
 })
-export class App {
-  protected readonly title = signal('04-Stacks');
-}
+export class App {}
