@@ -1,0 +1,13 @@
+<form class="person-form" (ngSubmit)="submitForm()">
+  <div class="field">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" />
+  </div>
+
+  <div class="field">
+    <label for="monto">Monto a retirar</label>
+    <input id="monto" type="number" [(ngModel)]="montoRetiro" name="montoRetiro" min="0" />
+  </div>
+
+  <button type="submit">Agregar persona</button>
+</form>

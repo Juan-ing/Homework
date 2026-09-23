@@ -1,0 +1,28 @@
+<section class="atm-container">
+  <h1>ATM Queue</h1>
+
+  <app-new-person-form (personAdded)="handlePersonAdded($event)"></app-new-person-form>
+
+  <div class="actions">
+    <button type="button" (click)="attendPerson()" [disabled]="people.length === 0">
+      Atender persona
+    </button>
+  </div>
+
+  @if (people.length === 0) {
+    <p class="empty-message">La cola está vacía.</p>
+  } @else {
+    <ol class="queue-list">
+      @for (person of people; track person.nombre + '-' + person.fechaLlegada.getTime(); let index = $index) {
+        <li class="queue-item">
+          <span class="position">{{ index + 1 }}</span>
+          <div class="info">
+            <strong>{{ person.nombre }}</strong>
+            <span>Monto: ${{ person.montoRetiro }}</span>
+            <span>Fecha llegada: {{ person.fechaLlegada | date: 'short' }}</span>
+          </div>
+        </li>
+      }
+    </ol>
+  }
+</section>
