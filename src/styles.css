@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+}
+
+header,
+main {
+	padding: 12px;
+}
+
+header nav {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+input {
+	margin: 5px;
+	padding: 5px;
+}
+
+button {
+	margin: 5px;
+	padding: 5px;
+}

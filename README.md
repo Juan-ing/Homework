@@ -57,3 +57,23 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# Challenge 08: Demo Login Page
+
+Aplicación Angular para practicar Services, Signals, Routing y Guards.
+
+## Ejecutar
+
+```bash
+npm install
+npm start
+```
+
+Abre `http://localhost:4200/`.
+
+## Credenciales de demostración
+
+- Email: `user@mail.com`
+- Password: `123`
+
+Al iniciar sesión, la aplicación abre `/exercise1`. Las rutas `/exercise1` y `/exercise2` están protegidas por `authGuard`; el encabezado permite navegar entre ambas y cerrar sesión.
