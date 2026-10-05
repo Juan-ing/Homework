@@ -1,0 +1,14 @@
+<section>
+	<h2>Consola del árbol</h2>
+	<h3>Insertar nodo</h3>
+	<label>Nodo padre <input [(ngModel)]="parentValue" placeholder="Ej. Productos" /></label>
+	<label>Nuevo valor <input [(ngModel)]="newValue" placeholder="Ej. Libros" /></label>
+	<button type="button" (click)="insertNode()">Insertar</button>
+	<h3>Recorridos</h3>
+	<button type="button" (click)="showDfs()">Mostrar DFS</button>
+	<button type="button" (click)="showBfs()">Mostrar BFS</button>
+	<h3>Buscar nodo</h3>
+	<label>Valor <input [(ngModel)]="searchValue" placeholder="Valor a buscar" /></label>
+	<button type="button" (click)="searchNode()">Buscar</button>
+	<p aria-live="polite">{{ message }}</p>
+</section>

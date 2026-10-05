@@ -1,0 +1,16 @@
+<section>
+	<h2>Menú jerárquico</h2>
+	<h3>{{ tree.root.value }}</h3>
+	<ul>
+		<ng-container *ngTemplateOutlet="menuItems; context: { $implicit: tree.root.children }"></ng-container>
+	</ul>
+</section>
+
+<ng-template #menuItems let-items>
+	<li *ngFor="let node of items">
+		<a [href]="'#' + node.value">{{ node.value }}</a>
+		<ul *ngIf="!node.isLeaf()">
+			<ng-container *ngTemplateOutlet="menuItems; context: { $implicit: node.children }"></ng-container>
+		</ul>
+	</li>
+</ng-template>

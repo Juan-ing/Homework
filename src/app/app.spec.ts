@@ -15,10 +15,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the challenge title', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, 07-NTrees');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Challenge 07: N-Tree');
   });
 });
