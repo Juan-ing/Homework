@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { BinaryTree, Node } from './binary-tree';
+import { TreeConsole } from './tree-console/tree-console';
+import { TreeVisual } from './tree-visual/tree-visual';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterLink, RouterOutlet, TreeConsole, TreeVisual],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('06-Trees');
+  tree = new BinaryTree();
+
+  updateTree(root: Node | null): void {
+    this.tree = new BinaryTree(root);
+  }
 }

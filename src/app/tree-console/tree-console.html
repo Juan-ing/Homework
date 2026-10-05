@@ -1,0 +1,23 @@
+<section>
+	<h2>Consola del árbol</h2>
+
+	<form (ngSubmit)="insert()">
+		<label for="insert-value">Número para insertar</label>
+		<input id="insert-value" name="insertValue" type="number" [(ngModel)]="insertValue" required />
+		<button type="submit">Insertar</button>
+	</form>
+
+	<div>
+		<button type="button" (click)="showPreOrder()">Pre-order</button>
+		<button type="button" (click)="showInOrder()">In-order</button>
+		<button type="button" (click)="showPostOrder()">Post-order</button>
+	</div>
+
+	<form (ngSubmit)="search()">
+		<label for="search-value">Número para buscar</label>
+		<input id="search-value" name="searchValue" type="number" [(ngModel)]="searchValue" required />
+		<button type="submit">Buscar</button>
+	</form>
+
+	<p aria-live="polite">{{ message }}</p>
+</section>

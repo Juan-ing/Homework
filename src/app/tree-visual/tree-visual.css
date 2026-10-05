@@ -1,0 +1,14 @@
+svg {
+	width: 100%;
+	max-width: 800px;
+	border: 1px solid black;
+}
+
+circle {
+	fill: lightgray;
+	stroke: black;
+}
+
+text {
+	font-size: 12px;
+}
