@@ -1,14 +1,16 @@
-<header>
-  <h1>Challenge 08 Login</h1>
-  @if (authService.isLoggedIn()) {
-    <nav>
-      <a routerLink="/exercise1">Challenge 06</a>
-      <a routerLink="/exercise2">Challenge 07</a>
-      <span>{{ authService.currentUser() }}</span>
-      <button type="button" (click)="logout()">Logout</button>
+<header class="app-header">
+  <a class="brand" routerLink="/">Taskflow</a>
+  @if (authState.isAuthenticated()) {
+    <nav class="account-nav">
+      <a routerLink="/tasks">Mis tareas</a>
+      <span>{{ authState.user()?.email }}</span>
+      <button class="btn btn-outline-light btn-sm" type="button" (click)="logout()">Cerrar sesión</button>
     </nav>
   }
 </header>
-<main>
+<main class="container app-main">
+  @if (logoutError()) {
+    <p class="alert alert-danger" role="alert">{{ logoutError() }}</p>
+  }
   <router-outlet />
 </main>

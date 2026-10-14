@@ -1,0 +1,9 @@
+@use 'variables' as theme;
+
+@mixin card {
+  background: #fff;
+  border: 1px solid theme.$border;
+  border-radius: 0.9rem;
+  box-shadow: 0 8px 26px rgb(32 43 60 / 5%);
+  padding: 1.5rem;
+}

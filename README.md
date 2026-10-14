@@ -1,66 +1,6 @@
-# 08Login
+# Challenge 09: Firebase Tasks
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-# Challenge 08: Demo Login Page
-
-Aplicación Angular para practicar Services, Signals, Routing y Guards.
+Aplicación Angular con autenticación de Firebase y una lista de tareas sincronizada en tiempo real con Cloud Firestore. El proyecto conserva los ejercicios protegidos del Challenge 08.
 
 ## Ejecutar
 
@@ -69,11 +9,21 @@ npm install
 npm start
 ```
 
-Abre `http://localhost:4200/`.
+Abre `http://localhost:4200/`. La aplicación usa Firebase Authentication con correo y contraseña y Firestore para guardar las tareas de cada usuario.
 
-## Credenciales de demostración
+## Configuración de Firebase
 
-- Email: `user@mail.com`
-- Password: `123`
+La configuración del proyecto se encuentra en `src/firebase/config.js`. En Firebase Console, habilita el proveedor **Email/Password** en Authentication y crea una base de datos de Cloud Firestore. Configura reglas para que cada usuario solo pueda leer y modificar documentos cuyo `userId` corresponda a su UID autenticado.
 
-Al iniciar sesión, la aplicación abre `/exercise1`. Las rutas `/exercise1` y `/exercise2` están protegidas por `authGuard`; el encabezado permite navegar entre ambas y cerrar sesión.
+Cada documento de `tasks` contiene `userId`, `title`, `completed` y `createdAt`. El cliente consulta únicamente las tareas del usuario autenticado.
+
+## Rutas
+
+- `/login`: iniciar sesión.
+- `/register`: crear una cuenta.
+- `/tasks`: crear, editar, completar y borrar tareas (requiere autenticación).
+- `/exercise1` y `/exercise2`: ejercicios previos del Challenge 08 (requieren autenticación).
+
+## Tecnologías
+
+Angular Signals, Firebase Authentication, Cloud Firestore, Bootstrap y SASS.

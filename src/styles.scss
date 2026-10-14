@@ -1,0 +1,18 @@
+@use 'styles/variables' as theme;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: theme.$page-background;
+  color: theme.$ink;
+  font-family: Inter, 'Segoe UI', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}

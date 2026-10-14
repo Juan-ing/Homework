@@ -9,19 +9,11 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
-  it('authenticates only the expected credentials', () => {
-    expect(service.login('user@mail.com', 'wrong')).toBe(false);
-    expect(service.isLoggedIn()).toBe(false);
-    expect(service.login('user@mail.com', '123')).toBe(true);
-    expect(service.isLoggedIn()).toBe(true);
-    expect(service.currentUser()).toBe('user@mail.com');
+  it('derives the logged-in state from the current Firebase user', () => {
+    expect(service.isLoggedIn()).toBe(service.currentUser() !== null);
   });
 
-  it('clears the authenticated user on logout', () => {
-    service.login('user@mail.com', '123');
-    service.logout();
-
-    expect(service.isLoggedIn()).toBe(false);
-    expect(service.currentUser()).toBeNull();
+  it('waits until Firebase resolves the initial authentication state', async () => {
+    await expect(service.waitForAuthState()).resolves.toBeUndefined();
   });
 });

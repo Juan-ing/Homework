@@ -1,0 +1,23 @@
+@use '../../styles/variables' as theme;
+@use '../../styles/mixins' as mixins;
+
+.auth-card {
+  @include mixins.card;
+  margin: 2rem auto;
+  max-width: 440px;
+}
+
+.auth-card h1 {
+  color: theme.$ink;
+  font-size: 1.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.auth-card .intro {
+  color: theme.$muted;
+  margin-bottom: 1.5rem;
+}
+
+.auth-card .form-control {
+  margin-bottom: 1rem;
+}

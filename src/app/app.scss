@@ -1,0 +1,52 @@
+@use '../styles/variables' as theme;
+
+.app-header {
+  align-items: center;
+  background: theme.$ink;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem max(1.5rem, calc((100vw - 960px) / 2));
+
+  .brand {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.account-nav {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  span {
+    color: #d0d5dd;
+    font-size: 0.9rem;
+  }
+}
+
+.app-main {
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+}
+
+@media (max-width: 540px) {
+  .app-header {
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .account-nav {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}

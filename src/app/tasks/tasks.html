@@ -1,0 +1,71 @@
+<section class="tasks-page">
+  <div class="tasks-heading">
+    <div>
+      <p class="eyebrow">TU ESPACIO PERSONAL</p>
+      <h1>Mis tareas</h1>
+    </div>
+    <span class="task-count">{{ taskState.tasks().length }} tareas</span>
+  </div>
+
+  <form class="add-task-form" (ngSubmit)="addTask()">
+    <label class="visually-hidden" for="new-task">Nueva tarea</label>
+    <input
+      class="form-control"
+      id="new-task"
+      name="newTask"
+      type="text"
+      [ngModel]="newTaskTitle()"
+      (ngModelChange)="newTaskTitle.set($event)"
+      placeholder="¿Qué necesitas hacer?"
+      maxlength="160"
+      required
+    />
+    <button class="btn btn-primary" type="submit" [disabled]="!newTaskTitle().trim()">Agregar tarea</button>
+  </form>
+
+  @if (errorMessage()) {
+    <p class="alert alert-danger" role="alert">{{ errorMessage() }}</p>
+  }
+  @if (taskState.errorMessage()) {
+    <p class="alert alert-danger" role="alert">No se pudieron cargar las tareas: {{ taskState.errorMessage() }}</p>
+  }
+
+  @if (taskState.isLoading()) {
+    <p class="loading-message" role="status">Cargando tareas…</p>
+  } @else if (taskState.tasks().length === 0) {
+    <div class="empty-state">
+      <h2>Tu lista está vacía</h2>
+      <p>Agrega una tarea para empezar a organizarte.</p>
+    </div>
+  } @else {
+    <ul class="task-list">
+      @for (task of taskState.tasks(); track task.id) {
+        <li class="task-item" [class.is-completed]="task.completed">
+          <button
+            class="complete-button"
+            type="button"
+            [attr.aria-label]="task.completed ? 'Marcar como pendiente' : 'Marcar como completada'"
+            [attr.aria-pressed]="task.completed"
+            [disabled]="busyTaskId() === task.id"
+            (click)="toggleTask(task.id)"
+          >{{ task.completed ? '✓' : '' }}</button>
+
+          @if (editingTaskId() === task.id) {
+            <form class="edit-form" (ngSubmit)="saveTask(task.id)">
+              <label class="visually-hidden" [for]="'edit-' + task.id">Editar tarea</label>
+              <input class="form-control" [id]="'edit-' + task.id" [name]="'edit-' + task.id" [ngModel]="editTitle()" (ngModelChange)="editTitle.set($event)" maxlength="160" required />
+              <button class="btn btn-primary btn-sm" type="submit" [disabled]="busyTaskId() === task.id">Guardar</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" (click)="cancelEditing()">Cancelar</button>
+            </form>
+          } @else {
+            <span class="task-title">{{ task.title }}</span>
+            <div class="task-actions">
+              <button class="btn btn-outline-secondary btn-sm" type="button" (click)="startEditing(task.id, task.title)">Editar</button>
+              <button class="btn btn-outline-danger btn-sm" type="button" [disabled]="busyTaskId() === task.id" (click)="deleteTask(task.id)">Borrar</button>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>

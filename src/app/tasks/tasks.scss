@@ -1,0 +1,131 @@
+@use '../../styles/variables' as theme;
+@use '../../styles/mixins' as mixins;
+
+.tasks-page {
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.tasks-heading {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  h1 {
+    color: theme.$ink;
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .eyebrow {
+    color: theme.$muted;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.task-count {
+  color: theme.$muted;
+  font-size: 0.9rem;
+}
+
+.add-task-form,
+.edit-form {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.add-task-form {
+  @include mixins.card;
+  margin-bottom: 1.25rem;
+}
+
+.task-list {
+  @include mixins.card;
+  list-style: none;
+  margin: 0;
+  padding: 0 1.25rem;
+}
+
+.task-item {
+  align-items: center;
+  border-bottom: 1px solid theme.$border;
+  display: flex;
+  gap: 0.8rem;
+  min-height: 68px;
+  padding: 0.75rem 0;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.complete-button {
+  background: #fff;
+  border: 1px solid #aab3c0;
+  border-radius: 50%;
+  color: #fff;
+  flex: 0 0 1.35rem;
+  height: 1.35rem;
+  line-height: 1;
+  padding: 0;
+  width: 1.35rem;
+}
+
+.is-completed .complete-button {
+  background: theme.$success;
+  border-color: theme.$success;
+}
+
+.task-title {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.is-completed .task-title {
+  color: theme.$muted;
+  text-decoration: line-through;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-form {
+  flex: 1;
+}
+
+.empty-state,
+.loading-message {
+  @include mixins.card;
+  color: theme.$muted;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-state h2 {
+  color: theme.$ink;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .add-task-form,
+  .task-item,
+  .edit-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .task-item {
+    align-items: flex-start;
+  }
+
+  .complete-button {
+    align-self: flex-start;
+  }
+}

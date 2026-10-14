@@ -1,22 +1,46 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  type User,
+  type UserCredential,
+} from 'firebase/auth';
+import { auth } from '../firebase/config.js';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-	readonly isLoggedIn = signal(false);
-	readonly currentUser = signal<string | null>(null);
+  private readonly user = signal<User | null>(auth.currentUser);
+  readonly currentUser = this.user.asReadonly();
+  readonly isLoggedIn = computed(() => this.user() !== null);
+  private readonly authStateReady: Promise<void>;
 
-	login(email: string, password: string): boolean {
-		if (email !== 'user@mail.com' || password !== '123') {
-			return false;
-		}
+  constructor() {
+    let resolveAuthState: () => void = () => {};
+    this.authStateReady = new Promise<void>((resolve) => {
+      resolveAuthState = resolve;
+    });
 
-		this.currentUser.set(email);
-		this.isLoggedIn.set(true);
-		return true;
-	}
+    onAuthStateChanged(auth, (user) => {
+      this.user.set(user);
+      resolveAuthState();
+    });
+  }
 
-	logout(): void {
-		this.isLoggedIn.set(false);
-		this.currentUser.set(null);
-	}
+  login(email: string, password: string): Promise<UserCredential> {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  register(email: string, password: string): Promise<UserCredential> {
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  logout(): Promise<void> {
+    return signOut(auth);
+  }
+
+  waitForAuthState(): Promise<void> {
+    return this.authStateReady;
+  }
 }
