@@ -1,0 +1,138 @@
+<section class="explorer">
+  <header class="explorer-heading">
+    <div>
+      <h1>Explorador de archivos</h1>
+      <p>Organiza tus carpetas y archivos en una estructura jerárquica.</p>
+    </div>
+    <div class="root-actions">
+      <button type="button" (click)="beginCreate(null, 'folder')" [disabled]="isSaving()">
+        + Carpeta
+      </button>
+      <button type="button" (click)="beginCreate(null, 'file')" [disabled]="isSaving()">
+        + Archivo
+      </button>
+    </div>
+  </header>
+
+  @if (errorMessage()) {
+    <p class="error-message" role="alert">{{ errorMessage() }}</p>
+  }
+
+  @if (createParentId() === null) {
+    <form class="name-form" (ngSubmit)="createNode()">
+      <label for="root-new-name"
+        >Nombre de {{ createType() === 'folder' ? 'la carpeta' : 'el archivo' }}</label
+      >
+      <input
+        id="root-new-name"
+        name="rootNewName"
+        [ngModel]="newName()"
+        (ngModelChange)="newName.set($event)"
+        required
+      />
+      <button type="submit" [disabled]="isSaving() || !newName().trim()">Crear</button>
+      <button type="button" (click)="cancelCreate()">Cancelar</button>
+    </form>
+  }
+
+  @if (isLoading()) {
+    <p role="status">Cargando archivos…</p>
+  } @else if (tree().root.children.length === 0 && createParentId() !== null) {
+    <p class="empty-state">Todavía no hay archivos. Crea una carpeta o un archivo para comenzar.</p>
+  }
+
+  <ng-template #renderNodes let-nodes>
+    <ul class="node-list">
+      <li *ngFor="let node of nodes">
+        <div class="node-row">
+          <button
+            *ngIf="node.type === 'folder'"
+            class="expand-button"
+            type="button"
+            [attr.aria-expanded]="isExpanded(node.id)"
+            [attr.aria-label]="(isExpanded(node.id) ? 'Contraer ' : 'Expandir ') + node.name"
+            (click)="toggleExpanded(node.id)"
+          >
+            {{ isExpanded(node.id) ? '−' : '+' }}
+          </button>
+          <span *ngIf="node.type === 'file'" class="expand-spacer"></span>
+          <span class="node-icon" aria-hidden="true">{{
+            node.type === 'folder' ? '📁' : '📄'
+          }}</span>
+
+          <form
+            *ngIf="editingNodeId() === node.id; else nodeName"
+            class="name-form"
+            (ngSubmit)="saveEdit(node.id)"
+          >
+            <label class="visually-hidden" [for]="'edit-' + node.id">Nombre</label>
+            <input
+              [id]="'edit-' + node.id"
+              [name]="'edit-' + node.id"
+              [ngModel]="editName()"
+              (ngModelChange)="editName.set($event)"
+              required
+            />
+            <button type="submit" [disabled]="isSaving() || !editName().trim()">Guardar</button>
+            <button type="button" (click)="cancelEdit()">Cancelar</button>
+          </form>
+          <ng-template #nodeName
+            ><span class="node-name">{{ node.name }}</span></ng-template
+          >
+
+          <div class="node-actions">
+            <button
+              *ngIf="node.type === 'folder'"
+              type="button"
+              (click)="beginCreate(node.id, 'folder')"
+              [disabled]="isSaving()"
+            >
+              + Carpeta
+            </button>
+            <button
+              *ngIf="node.type === 'folder'"
+              type="button"
+              (click)="beginCreate(node.id, 'file')"
+              [disabled]="isSaving()"
+            >
+              + Archivo
+            </button>
+            <button type="button" (click)="beginEdit(node)" [disabled]="isSaving()">Editar</button>
+            <button type="button" (click)="deleteNode(node)" [disabled]="isSaving()">
+              Eliminar
+            </button>
+          </div>
+        </div>
+
+        <form
+          *ngIf="createParentId() === node.id"
+          class="name-form child-create-form"
+          (ngSubmit)="createNode()"
+        >
+          <label [for]="'new-' + node.id"
+            >Nombre de {{ createType() === 'folder' ? 'la carpeta' : 'el archivo' }}</label
+          >
+          <input
+            [id]="'new-' + node.id"
+            [name]="'new-' + node.id"
+            [ngModel]="newName()"
+            (ngModelChange)="newName.set($event)"
+            required
+          />
+          <button type="submit" [disabled]="isSaving() || !newName().trim()">Crear</button>
+          <button type="button" (click)="cancelCreate()">Cancelar</button>
+        </form>
+
+        <ng-container *ngIf="node.type === 'folder' && isExpanded(node.id)">
+          <ng-container
+            *ngTemplateOutlet="renderNodes; context: { $implicit: node.children }"
+          ></ng-container>
+        </ng-container>
+      </li>
+    </ul>
+  </ng-template>
+
+  <ng-container
+    *ngTemplateOutlet="renderNodes; context: { $implicit: tree().root.children }"
+  ></ng-container>
+</section>

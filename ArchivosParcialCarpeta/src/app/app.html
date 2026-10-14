@@ -1,0 +1,21 @@
+<header class="app-header">
+  <a class="brand" routerLink="/">Parcial 2 · Archivos</a>
+  @if (auth.user(); as user) {
+    <nav class="account-nav">
+      <a routerLink="/files">Explorador</a>
+      <span>{{ user.email }}</span>
+      <button type="button" (click)="logout()">Cerrar sesión</button>
+    </nav>
+  } @else {
+    <nav class="account-nav">
+      <a routerLink="/login">Iniciar sesión</a>
+      <a routerLink="/register">Crear cuenta</a>
+    </nav>
+  }
+</header>
+<main>
+  @if (errorMessage()) {
+    <p class="error-message" role="alert">{{ errorMessage() }}</p>
+  }
+  <router-outlet />
+</main>

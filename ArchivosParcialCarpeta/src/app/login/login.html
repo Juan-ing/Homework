@@ -1,0 +1,31 @@
+<section class="auth-card">
+  <h1>Iniciar sesión</h1>
+  <p>Accede para administrar tus carpetas y archivos.</p>
+  <form (ngSubmit)="submit()">
+    <label for="login-email">Correo electrónico</label>
+    <input
+      id="login-email"
+      name="email"
+      type="email"
+      [(ngModel)]="email"
+      autocomplete="email"
+      required
+    />
+    <label for="login-password">Contraseña</label>
+    <input
+      id="login-password"
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      autocomplete="current-password"
+      required
+    />
+    @if (errorMessage()) {
+      <p class="error-message" role="alert">{{ errorMessage() }}</p>
+    }
+    <button type="submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? 'Ingresando…' : 'Iniciar sesión' }}
+    </button>
+  </form>
+  <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a>.</p>
+</section>

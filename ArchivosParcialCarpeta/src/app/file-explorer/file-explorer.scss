@@ -1,0 +1,101 @@
+@use '../../styles/variables' as colors;
+
+.explorer {
+  background: #fff;
+  border: 1px solid colors.$border;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.explorer-heading,
+.node-row,
+.root-actions,
+.node-actions,
+.name-form {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.explorer-heading {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    color: colors.$muted;
+    margin: 0.4rem 0 0;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+li {
+  margin: 4px 0;
+}
+
+button {
+  margin: 5px;
+  padding: 5px;
+}
+
+.node-row {
+  flex-wrap: wrap;
+}
+
+.node-name {
+  overflow-wrap: anywhere;
+}
+
+.node-actions {
+  flex-wrap: wrap;
+  gap: 0;
+  margin-left: auto;
+}
+
+.expand-button,
+.expand-spacer {
+  min-width: 1.75rem;
+}
+
+.expand-spacer {
+  display: inline-block;
+}
+
+.name-form {
+  flex-wrap: wrap;
+
+  input {
+    max-width: 18rem;
+    min-width: 8rem;
+  }
+}
+
+.child-create-form {
+  margin-left: 2rem;
+}
+
+.error-message {
+  color: #a61b1b;
+}
+
+.empty-state {
+  color: colors.$muted;
+}
+
+@media (max-width: 600px) {
+  .explorer-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .node-actions {
+    margin-left: 2rem;
+  }
+}

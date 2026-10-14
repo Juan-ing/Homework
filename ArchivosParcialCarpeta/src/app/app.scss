@@ -1,0 +1,53 @@
+:host {
+  color: #243142;
+  display: block;
+  font-family: Arial, sans-serif;
+}
+
+.app-header {
+  align-items: center;
+  background: #263548;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+  a {
+    color: inherit;
+  }
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.account-nav {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  button {
+    padding: 0.4rem;
+  }
+}
+
+main {
+  margin: 2rem auto;
+  max-width: 960px;
+  padding: 0 1rem;
+}
+
+.error-message {
+  color: #a61b1b;
+}
+
+@media (max-width: 560px) {
+  .app-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
