@@ -1,5 +1,5 @@
 {
-  "name": "08-login",
+  "name": "supabase",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:08-Login": "node dist/08-Login/server/server.mjs"
+    "serve:ssr:Supabase": "node dist/Supabase/server/server.mjs"
   },
   "private": true,
   "packageManager": "npm@12.2.0",
@@ -20,9 +20,8 @@
     "@angular/platform-server": "^22.2.0",
     "@angular/router": "^22.2.0",
     "@angular/ssr": "^22.2.1",
-    "bootstrap": "^5.3.8",
+    "@supabase/supabase-js": "^2.119.0",
     "express": "^5.1.0",
-    "firebase": "^13.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -34,7 +33,6 @@
     "@types/node": "^22.12.0",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
-    "sass": "^1.105.1",
     "typescript": "~6.0.2",
     "vitest": "^5.0.0"
   }

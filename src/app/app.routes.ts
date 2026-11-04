@@ -1,17 +1,13 @@
 import { Routes } from '@angular/router';
-import { Exercise1 } from './exercise1/exercise1';
-import { Exercise2 } from './exercise2/exercise2';
-import { Login } from './login/login';
-import { Register } from './register/register';
-import { Tasks } from './tasks/tasks';
-import { authGuard } from './auth-guard-guard';
+import { authGuard } from './guards/auth.guard';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
 
 export const routes: Routes = [
-	{ path: 'login', component: Login },
-	{ path: 'register', component: Register },
-	{ path: 'tasks', component: Tasks, canActivate: [authGuard] },
-	{ path: 'exercise1', component: Exercise1, canActivate: [authGuard] },
-	{ path: 'exercise2', component: Exercise2, canActivate: [authGuard] },
-	{ path: '', redirectTo: 'tasks', pathMatch: 'full' },
-	{ path: '**', redirectTo: 'tasks' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'tasks', component: TasksComponent, canActivate: [authGuard] },
+  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+  { path: '**', redirectTo: 'tasks' },
 ];

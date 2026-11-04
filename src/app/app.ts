@@ -1,22 +1,22 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { useAuthState } from './firebase-hooks';
+import { AuthService } from './services/auth.service';
 
 @Component({
   imports: [RouterLink, RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.scss',
+  styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly authState = useAuthState();
+  protected readonly authService = inject(AuthService);
   readonly logoutError = signal('');
   private readonly router = inject(Router);
 
   async logout(): Promise<void> {
     this.logoutError.set('');
     try {
-      await this.authState.logout();
+      await this.authService.logout();
       await this.router.navigate(['/login']);
     } catch (error) {
       this.logoutError.set(

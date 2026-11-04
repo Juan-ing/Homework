@@ -1,0 +1,17 @@
+.auth-card {
+  margin: 20px auto;
+  max-width: 420px;
+}
+
+.auth-card label {
+  display: block;
+}
+
+.auth-card input {
+  display: block;
+  width: 100%;
+}
+
+.message {
+  color: #333;
+}

@@ -1,0 +1,70 @@
+.container {
+  margin: 0 auto;
+  max-width: 760px;
+  padding: 20px;
+}
+
+.avatar {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 12px;
+}
+
+.avatar h2 {
+  font-size: 1.1rem;
+}
+
+.avatar-image {
+  display: block;
+  height: 100px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  width: 100px;
+}
+
+.avatar label {
+  display: block;
+}
+
+.new-task-form,
+.edit-form {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.new-task-form input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.task p {
+  margin: 5px 0;
+}
+
+.completed strong {
+  text-decoration: line-through;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.error {
+  color: #a00000;
+}

@@ -1,0 +1,88 @@
+<section class="container">
+  <h1>Mis tareas</h1>
+
+  <section class="avatar">
+    <h2>Mi avatar</h2>
+    @if (avatarUrl()) {
+      <img class="avatar-image" [src]="avatarUrl()" alt="Avatar del usuario" />
+    }
+    <label for="avatar-file">Subir imagen</label>
+    <input
+      id="avatar-file"
+      type="file"
+      accept="image/*"
+      [disabled]="isUploadingAvatar()"
+      (change)="onAvatarSelected($event)"
+    />
+    @if (isUploadingAvatar()) {
+      <p role="status">Subiendo imagen...</p>
+    }
+  </section>
+
+  @if (errorMessage()) {
+    <p class="error" role="alert">{{ errorMessage() }}</p>
+  }
+
+  <form class="new-task-form" (ngSubmit)="addTask()">
+    <label for="new-task">Nueva tarea</label>
+    <input
+      id="new-task"
+      name="newTask"
+      type="text"
+      [ngModel]="newTaskTitle()"
+      (ngModelChange)="newTaskTitle.set($event)"
+      maxlength="160"
+      required
+    />
+    <button type="submit" [disabled]="!newTaskTitle().trim()">Agregar tarea</button>
+  </form>
+
+  @if (isLoading()) {
+    <p role="status">Cargando tareas...</p>
+  } @else if (tasks().length === 0) {
+    <p>No tienes tareas. Agrega la primera.</p>
+  } @else {
+    <ul class="task-list">
+      @for (task of tasks(); track task.id) {
+        <li class="task" [class.completed]="task.completada">
+          @if (editingTaskId() === task.id) {
+            <form class="edit-form" (ngSubmit)="saveTask(task.id)">
+              <label [for]="'edit-' + task.id">Título</label>
+              <input
+                [id]="'edit-' + task.id"
+                [name]="'edit-' + task.id"
+                [ngModel]="editTitle()"
+                (ngModelChange)="editTitle.set($event)"
+                maxlength="160"
+                required
+              />
+              <button type="submit" [disabled]="busyTaskId() === task.id">Guardar</button>
+              <button type="button" (click)="cancelEditing()">Cancelar</button>
+            </form>
+          } @else {
+            <strong>{{ task.titulo }}</strong>
+            <p>Estado: {{ task.completada ? 'Completada' : 'Pendiente' }}</p>
+            <p>Creada: {{ formatDate(task.created_at) }}</p>
+            <div class="task-actions">
+              <button
+                type="button"
+                [disabled]="busyTaskId() === task.id"
+                (click)="toggleCompleted(task)"
+              >
+                {{ task.completada ? 'Desmarcar' : 'Completar' }}
+              </button>
+              <button type="button" (click)="startEditing(task)">Editar</button>
+              <button
+                type="button"
+                [disabled]="busyTaskId() === task.id"
+                (click)="deleteTask(task.id)"
+              >
+                Eliminar
+              </button>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>

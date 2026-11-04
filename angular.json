@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "08-Login": {
+    "Supabase": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -26,8 +26,7 @@
               }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -66,10 +65,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "08-Login:build:production"
+              "buildTarget": "Supabase:build:production"
             },
             "development": {
-              "buildTarget": "08-Login:build:development"
+              "buildTarget": "Supabase:build:development"
             }
           },
           "defaultConfiguration": "development"

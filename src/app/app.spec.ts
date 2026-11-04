@@ -1,13 +1,22 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { AuthService } from './services/auth.service';
 import { App } from './app';
-import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
-      providers: [provideRouter(routes)],
+      providers: [
+        provideRouter([]),
+        {
+          provide: AuthService,
+          useValue: {
+            currentUser: () => null,
+            isLoggedIn: () => false,
+          },
+        },
+      ],
     })
       .compileComponents();
   });
@@ -18,10 +27,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the Taskflow brand', async () => {
+  it('should render the application header', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.brand')?.textContent).toContain('Taskflow');
+    expect(compiled.querySelector('header')?.textContent).toContain('Mis tareas');
   });
 });

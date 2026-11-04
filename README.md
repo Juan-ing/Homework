@@ -1,29 +1,37 @@
-# Challenge 09: Firebase Tasks
+# Challenge 10: Angular + Supabase
 
-Aplicación Angular con autenticación de Firebase y una lista de tareas sincronizada en tiempo real con Cloud Firestore. El proyecto conserva los ejercicios protegidos del Challenge 08.
+Aplicación de tareas con autenticación por correo, operaciones CRUD, actualizaciones en tiempo real y avatares en Supabase Storage. Las tareas y los archivos se protegen con políticas RLS.
 
 ## Ejecutar
 
 ```bash
 npm install
-npm start
+ng serve
 ```
 
-Abre `http://localhost:4200/`. La aplicación usa Firebase Authentication con correo y contraseña y Firestore para guardar las tareas de cada usuario.
+Abre `http://localhost:4200/`.
 
-## Configuración de Firebase
+## Configuración
 
-La configuración del proyecto se encuentra en `src/firebase/config.js`. En Firebase Console, habilita el proveedor **Email/Password** en Authentication y crea una base de datos de Cloud Firestore. Configura reglas para que cada usuario solo pueda leer y modificar documentos cuyo `userId` corresponda a su UID autenticado.
+La URL y la clave **Publishable** del proyecto están en `src/environments/environment.ts`. Esa clave está diseñada para usarse en el cliente; nunca configures una `Secret Key` en Angular.
 
-Cada documento de `tasks` contiene `userId`, `title`, `completed` y `createdAt`. El cliente consulta únicamente las tareas del usuario autenticado.
+En el SQL Editor del proyecto Supabase, ejecuta [`supabase/setup.sql`](./supabase/setup.sql). El script crea la tabla `public.tareas`, habilita RLS y sus políticas, crea el bucket privado `avatars` y sus políticas, y agrega la tabla a la publicación de Realtime.
 
-## Rutas
+Habilita Email en **Authentication → Providers**. Si la confirmación de correo está activa, registra la cuenta y confirma el mensaje recibido antes de iniciar sesión.
 
-- `/login`: iniciar sesión.
+## Rutas y funcionalidades
+
 - `/register`: crear una cuenta.
-- `/tasks`: crear, editar, completar y borrar tareas (requiere autenticación).
-- `/exercise1` y `/exercise2`: ejercicios previos del Challenge 08 (requieren autenticación).
+- `/login`: iniciar sesión.
+- `/tasks`: lista protegida; agregar, editar, borrar y completar tareas; cargar y mostrar el avatar.
+- Al autenticar, se muestra el correo de la cuenta y la opción para cerrar sesión.
+- Las tareas se vuelven a consultar automáticamente cuando Realtime notifica cambios.
 
-## Tecnologías
+## Estructura principal
 
-Angular Signals, Firebase Authentication, Cloud Firestore, Bootstrap y SASS.
+- `src/app/services/supabase.service.ts`: cliente Supabase.
+- `src/app/services/auth.service.ts`: registro, inicio/cierre de sesión y sesión actual.
+- `src/app/services/task.service.ts`: CRUD y suscripción Realtime.
+- `src/app/services/avatar.service.ts`: Storage para avatares.
+- `src/app/guards/auth.guard.ts`: protección de `/tasks`.
+- `src/app/pages/`: componentes de login, registro y tareas.
