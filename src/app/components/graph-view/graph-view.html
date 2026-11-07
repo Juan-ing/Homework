@@ -1,0 +1,73 @@
+<section class="panel">
+  <h2>Grafo de amigos y ciudades</h2>
+  <div class="graph-container">
+    @if (graphData().nodes.length > 0) {
+      <svg #graphCanvas role="img" aria-label="Grafo de personas y ciudades"></svg>
+    } @else {
+      <p>Agrega una persona o una ciudad para visualizar el grafo.</p>
+    }
+  </div>
+  <p class="legend">
+    <span class="city-key"></span> Ciudad
+    <span class="person-key"></span> Persona
+  </p>
+</section>
+
+<section class="panel">
+  <h2>Ciudades</h2>
+  <label for="city-search">Buscar ciudad</label>
+  <input id="city-search" name="citySearch" [(ngModel)]="citySearch" />
+  <ul>
+    @for (city of filteredCities; track city.id) {
+      <li>{{ city.name }}</li>
+    } @empty {
+      <li>No se encontraron ciudades.</li>
+    }
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Personas</h2>
+  <label for="person-search">Buscar persona</label>
+  <input id="person-search" name="personSearch" [(ngModel)]="personSearch" />
+  <ul>
+    @for (person of filteredPeople; track person.id) {
+      <li>{{ person.name }}, {{ person.age }} años — {{ cityName(person.cityId) }}</li>
+    } @empty {
+      <li>No se encontraron personas.</li>
+    }
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Personas por ciudad</h2>
+  <label for="city-filter">Ciudad</label>
+  <select id="city-filter" name="selectedCityId" [(ngModel)]="selectedCityId">
+    @for (city of cities(); track city.id) {
+      <option [value]="city.id">{{ city.name }}</option>
+    }
+  </select>
+  <ul>
+    @for (person of residents; track person.id) {
+      <li>{{ person.name }}, {{ person.age }} años</li>
+    } @empty {
+      <li>No hay personas asociadas a esta ciudad.</li>
+    }
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Lista de adyacencia</h2>
+  <ul>
+    @for (line of adjacencyList; track line) {
+      <li>{{ line }}</li>
+    } @empty {
+      <li>El grafo está vacío.</li>
+    }
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>Estructura completa del grafo</h2>
+  <pre>{{ graphStructure }}</pre>
+</section>

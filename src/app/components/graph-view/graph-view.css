@@ -1,0 +1,51 @@
+.panel {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.graph-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: auto;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  min-width: 360px;
+  height: auto;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.city-key,
+.person-key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.city-key {
+  background: #2878c7;
+}
+
+.person-key {
+  background: #32965d;
+}
+
+input,
+select {
+  margin: 5px;
+  padding: 5px;
+}
+
+pre {
+  overflow: auto;
+  white-space: pre-wrap;
+}
