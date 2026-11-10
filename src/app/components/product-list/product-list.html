@@ -1,0 +1,27 @@
+<h2>Todos los productos</h2>
+<p>{{ products.length }} productos en memoria</p>
+@if (products.length) {
+  <ul class="product-list">
+    @for (product of products; track product.id) {
+      <li class="product-item">
+        <div>
+          <strong>{{ product.name }}</strong>
+          <span>Popularidad: {{ product.popularity }}</span>
+        </div>
+        <div class="popularity-controls">
+          <button
+            type="button"
+            [disabled]="product.popularity <= 0"
+            [attr.aria-label]="'Reducir popularidad de ' + product.name"
+            (click)="popularityChange.emit({ id: product.id, amount: -1 })"
+          >−</button>
+          <button
+            type="button"
+            [attr.aria-label]="'Aumentar popularidad de ' + product.name"
+            (click)="popularityChange.emit({ id: product.id, amount: 1 })"
+          >+</button>
+        </div>
+      </li>
+    }
+  </ul>
+}

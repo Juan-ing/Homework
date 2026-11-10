@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { GraphManager } from './components/graph-manager/graph-manager';
-import { GraphView } from './components/graph-view/graph-view';
+import { SearchEngine } from './components/search-engine/search-engine';
 
 @Component({
-  imports: [GraphManager, GraphView],
+  imports: [SearchEngine],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = 'Challenge 11: Graphs';
+  protected readonly title = 'Challenge 12: Smart Search Engine';
 }

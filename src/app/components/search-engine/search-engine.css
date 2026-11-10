@@ -1,0 +1,51 @@
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 12px;
+  background: white;
+}
+
+.search-controls,
+.add-product form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.search-controls label,
+.add-product label {
+  margin-left: 5px;
+}
+
+.search-controls input[type='search'] {
+  flex: 1;
+  min-width: 150px;
+}
+
+.add-product input[type='text'] {
+  flex: 1;
+  min-width: 160px;
+}
+
+.add-product input[type='number'] {
+  width: 100px;
+}
+
+.form-message {
+  margin: 8px 5px 0;
+}
+
+@media (max-width: 760px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}

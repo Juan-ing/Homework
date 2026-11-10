@@ -1,0 +1,39 @@
+h2 {
+  margin-top: 20px;
+}
+
+.suggestions {
+  padding-left: 22px;
+}
+
+.suggestions li {
+  padding: 3px 0;
+}
+
+.suggestions span {
+  color: #555;
+}
+
+.education {
+  margin: 12px 0;
+  background: #f7f8fa;
+}
+
+.education h3,
+.education p {
+  margin: 5px 0;
+}
+
+.top-results {
+  padding-left: 28px;
+}
+
+.top-results li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.top-results span {
+  white-space: nowrap;
+}

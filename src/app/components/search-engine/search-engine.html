@@ -1,0 +1,72 @@
+<div class="workspace">
+  <section class="search-panel card">
+    <h2>Smart Search</h2>
+    <div class="search-controls">
+      <label for="product-search">Buscar por prefijo</label>
+      <input
+        id="product-search"
+        name="prefix"
+        type="search"
+        [(ngModel)]="prefix"
+        (ngModelChange)="search()"
+        placeholder="Ej. air"
+      >
+      <label for="top-k">Cantidad K</label>
+      <input
+        id="top-k"
+        name="topK"
+        type="number"
+        min="0"
+        step="1"
+        [(ngModel)]="topK"
+        (ngModelChange)="search()"
+      >
+      <button type="button" (click)="search()">Buscar</button>
+    </div>
+
+    <app-search-results
+      [prefix]="prefix"
+      [suggestions]="suggestions"
+      [topProducts]="topProducts"
+      [topK]="topK"
+      [productCount]="products.length"
+      [heapInserted]="heapInserted"
+      [heapSize]="heapSize"
+    />
+
+    <section class="add-product card">
+      <h2>Agregar producto</h2>
+      <form (ngSubmit)="addProduct()">
+        <label for="product-name">Nombre del producto</label>
+        <input
+          id="product-name"
+          name="productName"
+          type="text"
+          [(ngModel)]="productName"
+          required
+          placeholder="Ej. nike pegasus"
+        >
+        <label for="product-popularity">Popularidad</label>
+        <input
+          id="product-popularity"
+          name="popularity"
+          type="number"
+          [(ngModel)]="popularity"
+          min="0"
+          required
+        >
+        <button type="submit">Agregar</button>
+      </form>
+      @if (formMessage) {
+        <p class="form-message" role="status">{{ formMessage }}</p>
+      }
+    </section>
+  </section>
+
+  <aside class="product-panel card">
+    <app-product-list
+      [products]="products"
+      (popularityChange)="changePopularity($event)"
+    />
+  </aside>
+</div>

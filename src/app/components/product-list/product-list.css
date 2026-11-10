@@ -1,0 +1,32 @@
+.product-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.product-item div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.product-item span {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.popularity-controls {
+  display: flex;
+}
+
+.popularity-controls button {
+  min-width: 32px;
+}

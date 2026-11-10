@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Grafos": {
+    "Tries": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Grafos:build:production"
+              "buildTarget": "Tries:build:production"
             },
             "development": {
-              "buildTarget": "Grafos:build:development"
+              "buildTarget": "Tries:build:development"
             }
           },
           "defaultConfiguration": "development"

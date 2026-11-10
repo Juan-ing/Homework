@@ -15,11 +15,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the graph challenge title', async () => {
+  it('should render the search engine challenge', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Challenge 11: Graphs');
-    expect(compiled.textContent).toContain('Juan, 22 años');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Challenge 12');
+    expect(compiled.textContent).toContain('Sugerencias por prefijo');
   });
 });

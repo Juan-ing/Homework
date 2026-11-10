@@ -4,15 +4,34 @@
 
 body {
   margin: 0;
-  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #222;
+  background: #f7f8fa;
 }
 
 button {
   cursor: pointer;
+  padding: 6px 10px;
 }
 
 button:disabled {
   cursor: not-allowed;
+}
+
+input,
+button,
+select {
+  margin: 5px;
+  padding: 5px;
+  font: inherit;
+}
+
+button {
+  border: 1px solid #999;
+  border-radius: 3px;
+  background: white;
+}
+
+button:hover:not(:disabled) {
+  background: #eee;
 }

@@ -1,0 +1,47 @@
+<section class="results-section">
+  <h2>Sugerencias por prefijo</h2>
+  @if (prefix.trim()) {
+    <p>
+      Prefijo: <strong>{{ prefix }}</strong> · Coincidencias: {{ suggestions.length }}
+    </p>
+    @if (suggestions.length) {
+      <ul class="suggestions">
+        @for (product of suggestions; track product.id) {
+          <li>{{ product.name }} <span>({{ product.popularity }})</span></li>
+        }
+      </ul>
+    } @else {
+      <p>No se encontraron productos con ese prefijo.</p>
+    }
+  } @else {
+    <p>Escribe un prefijo para ver sugerencias.</p>
+  }
+
+  <div class="education card">
+    <h3>Trie</h3>
+    <p>Productos almacenados: {{ productCount }}</p>
+    <p>Prefijo buscado: {{ prefix || '—' }}</p>
+    <p>Coincidencias encontradas: {{ suggestions.length }}</p>
+  </div>
+
+  <h2>Top {{ topK }} resultados</h2>
+  @if (topProducts.length) {
+    <ol class="top-results">
+      @for (product of topProducts; track product.id) {
+        <li class="card">
+          <strong>{{ product.name }}</strong>
+          <span>Popularidad: {{ product.popularity }}</span>
+        </li>
+      }
+    </ol>
+  } @else {
+    <p>No hay resultados para mostrar.</p>
+  }
+
+  <div class="education card">
+    <h3>MaxHeap</h3>
+    <p>Elementos insertados: {{ heapInserted }}</p>
+    <p>Top K generado: {{ topProducts.length }}</p>
+    <p>Tamaño actual del heap: {{ heapSize }}</p>
+  </div>
+</section>
