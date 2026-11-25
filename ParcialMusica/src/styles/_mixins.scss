@@ -1,0 +1,25 @@
+@use './tokens' as *;
+
+@mixin panel($radius: $radius-card) {
+  border: 1px solid $line;
+  border-radius: $radius;
+  background: $surface;
+  box-shadow: $shadow-soft;
+}
+
+@mixin focus-ring($color: $mint) {
+  outline: 3px solid rgba($color, 0.7);
+  outline-offset: 3px;
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
